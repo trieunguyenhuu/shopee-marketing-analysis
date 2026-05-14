@@ -71,23 +71,26 @@ Raw data có nhiều vấn đề thực tế cần xử lý:
 
 ### Trang 1 — Overview
 
-`[![alt text](image.png)]`
+![Overview](image.png)
 
 ### Trang 2 — Campaign Detail
 
-`[![alt text](image-1.png)]`
+![Detail](image-1.png)
 
 ---
 
 ## Key Insights
 
-> Các chỉ số được tính bằng DAX measures trong Power BI:
-> `Total Spend = SUM(cleaned_data[spend])`
-> `Total Revenue = SUM(cleaned_data[revenue])`
-> `CPC = DIVIDE(SUM(cleaned_data[spend]), SUM(cleaned_data[clicks]))`
-> `ROAS = DIVIDE(SUM(cleaned_data[revenue]), SUM(cleaned_data[spend]))`
-> `CTR = DIVIDE(SUM(cleaned_data[clicks]), SUM(cleaned_data[impressions]))`
-> `CVR = DIVIDE(SUM(cleaned_data[conversions]), SUM(cleaned_data[clicks]))`
+**DAX Measures được dùng trong Power BI:**
+
+```dax
+Total Spend = SUM(cleaned_data[spend])
+Total Revenue = SUM(cleaned_data[revenue])
+ROAS = DIVIDE(SUM(cleaned_data[revenue]), SUM(cleaned_data[spend]))
+CTR = DIVIDE(SUM(cleaned_data[clicks]), SUM(cleaned_data[impressions]))
+CPC = DIVIDE(SUM(cleaned_data[spend]), SUM(cleaned_data[clicks]))
+CVR = DIVIDE(SUM(cleaned_data[conversions]), SUM(cleaned_data[clicks]))
+```
 
 1. **Facebook Ads có ROAS cao nhất (~6.2)** — cứ 1 đồng bỏ ra thu về ~6.2 đồng, nhưng lại đang nhận ngân sách thấp hơn TikTok → cơ hội tối ưu ngân sách rõ ràng
 
