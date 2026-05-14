@@ -63,10 +63,6 @@ Raw data có nhiều vấn đề thực tế cần xử lý:
 
 ### Bước 3 — Dashboard (Power BI)
 
-*(Xem ảnh bên dưới)*
-
----
-
 ## Dashboard Preview
 
 ### Trang 1 — Overview
