@@ -165,7 +165,14 @@ for col in NUMERIC_COLS:
 
     # Ép kiểu về float
     df[col] = pd.to_numeric(df[col], errors="coerce")
-
+    
+# 4b. LOẠI BỎ GIÁ TRỊ ÂM (vô lý về business)
+print("Xử lý giá trị âm...")
+for col in NUMERIC_COLS:
+    neg_count = (df[col] < 0).sum()
+    if neg_count > 0:
+        print(f"   {col}: {neg_count} giá trị âm → không xác định nguyên nhân → thay bằng NaN")
+        df.loc[df[col] < 0, col] = np.nan
 print()
 
 

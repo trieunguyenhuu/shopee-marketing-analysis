@@ -50,6 +50,7 @@ Raw data có nhiều vấn đề thực tế cần xử lý:
 - **campaign_name:** nhiều cách viết khác nhau → chuẩn hóa về 2 loại nhất quán
 - **platform:** `fb`, `FB`, `Facebook`, `insta`, `tt ads`... → mapping về tên chuẩn
 - **Cột số:** `1.5k`, `1,035`, `574đ`, `1090$`, `N/A`, `null`, `one hundred` → parse về float
+- **Giá trị âm:** spend/ âm không có ý nghĩa business → không xác định nguyên nhân thay bằng `NaN`
 - **date:** 10+ định dạng khác nhau (`May 6 2024`, `05-02-2024`, `2024.05.06`...) → chuẩn hóa về `YYYY-MM-DD`
 - **Missing values:** impute bằng median theo platform để tránh bị kéo lệch bởi outlier
 
@@ -75,6 +76,38 @@ Raw data có nhiều vấn đề thực tế cần xử lý:
 
 ---
 
+## Hướng dẫn chạy
+
+### Yêu cầu
+- Python 3.8+
+- Các thư viện: `pandas`, `numpy`, `openpyxl`, `matplotlib`, `seaborn`, `jupyter`
+
+### Cài đặt
+```bash
+git clone https://github.com/trieunguyenhuu/shopee-marketing-analysis.git
+cd shopee-marketing-analysis
+python -m venv venv
+venv\Scripts\activate        # Windows
+pip install -r requirements.txt
+```
+
+### Chạy theo thứ tự
+
+**Bước 1 — Data Cleaning**
+```bash
+python clean_data.py
+```
+Output: `data/shopee_cleaned.xlsx`
+
+**Bước 2 — EDA**
+```bash
+jupyter notebook eda_shopee.ipynb
+```
+
+**Bước 3 — Dashboard**  
+Mở file `shopee_dashboard.pbix` bằng Power BI Desktop.  
+Nếu data chưa load: Home → Transform Data → Data Source Settings → đổi đường dẫn đến `data/shopee_cleaned.xlsx` → Refresh.
+
 ## Key Insights
 
 **DAX Measures được dùng trong Power BI:**
@@ -88,11 +121,11 @@ CPC = DIVIDE(SUM(cleaned_data[spend]), SUM(cleaned_data[clicks]))
 CVR = DIVIDE(SUM(cleaned_data[conversions]), SUM(cleaned_data[clicks]))
 ```
 
-1. **Facebook Ads có ROAS cao nhất (~6.2)** — cứ 1 đồng bỏ ra thu về ~6.2 đồng, nhưng lại đang nhận ngân sách thấp hơn TikTok → cơ hội tối ưu ngân sách rõ ràng
+1. **Shopee Ads có ROAS cao nhất (6.02)** — hiệu quả nhất trên mỗi đồng chi tiêu nhưng đang bị underinvest, ngân sách chỉ bằng ~1/3 TikTok → cơ hội tối ưu ngân sách rõ ràng
 
-2. **TikTok Ads chi tiêu nhiều nhất (~0.4M) nhưng ROAS thấp nhất** — revenue tuyệt đối cao do spend lớn, không phải do hiệu quả thực sự
+2. **TikTok Ads chi tiêu nhiều nhất nhưng ROAS thấp nhất (~4.32)** — revenue tuyệt đối cao do spend lớn, không phải do hiệu quả thực sự
 
-3. **Shopee Ads đang bị underinvest** — ROAS đứng thứ 2 nhưng ngân sách chỉ bằng ~1/4 TikTok
+3. **Facebook Ads đứng thứ 2 về ROAS (5.83)** — revenue cao thứ 2 toàn platform, là platform cân bằng tốt giữa scale và hiệu quả
 
 4. **Tất cả platform đều có ROAS > 1** → toàn bộ chiến dịch có lãi về mặt doanh thu
 
