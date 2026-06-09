@@ -143,5 +143,5 @@ CVR = DIVIDE(SUM(cleaned_data[conversions]), SUM(cleaned_data[clicks]))
 
 ## Tác giả
 
-**[Tên của bạn]**  
+**[Nguyễn Hữu Triệu]**  
 [LinkedIn](https://www.linkedin.com/in/trieunguyenhuu/) · [Email](nguyenhuutrieu2004@gmail.com)

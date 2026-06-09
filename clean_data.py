@@ -6,7 +6,7 @@ from pathlib import Path
 # 0. CẤU HÌNH
 INPUT_FILE  = "data/shopee_sale_5_5_data.xlsx"   # file gốc
 OUTPUT_FILE = "data/shopee_cleaned.xlsx"          # file sạch
-SHEET_NAME  = 0                              # 0 = sheet đầu tiên
+SHEET_NAME  = 0
 
 # 1. ĐỌC DỮ LIỆU
 print("📂 Đang đọc file...")
